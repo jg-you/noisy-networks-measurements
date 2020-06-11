@@ -1,7 +1,7 @@
 data {
   int<lower=1> n;
   int<lower=0> X[n, n];
-  // [[Additional data goes here]]
+  // [[Additional data go here]]
   int M;
   real<lower=0> rates_prior[2];
   real<lower=0> rho_prior[2];

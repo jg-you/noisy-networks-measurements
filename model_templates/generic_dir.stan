@@ -1,7 +1,7 @@
 data {
   int<lower=1> n;
   int<lower=0> X[n, n];
-  // [[Additional data goes here]]
+  // [[Additional data go here]]
 }
 parameters {
   // [[Parameters go here]]
