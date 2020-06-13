@@ -8,6 +8,7 @@ Incomplete model templates. Use as a base to implement custom models. Portions o
 
 * [`generic_undir.stan`](generic_undir.stan): Generic template for measurement of undirected graph. 
 * [`generic_dir.stan`](generic_dir.stan): Generic template for measurement of directed graph. 
+* [`generic_undir_multitype.stan`](generic_undir_multitype.stan): Generic template for measurement of undirected graph with many edge types. 
 
 See `stan` reference manual for details on how to use various [probability mass functions](https://mc-stan.org/docs/2_23/functions-reference/discrete-distributions.html#discrete-distributions) and [probability density functions](https://mc-stan.org/docs/2_23/functions-reference/continuous-distributions.html#continuous-distributions). 
 
@@ -18,7 +19,7 @@ See `stan` reference manual for details on how to use various [probability mass 
 * [`bernoulli_data_ER_prior.stan`](bernoulli_data_ER_prior.stan): Takes as input a symmetric matrix of number of observations `X`, and a total number of observations `M`. Models `X[i,j]` as the outcome of `M` draws, with success rate determined by presence or absence of the edge `(i,j)`. Uses an Erdös-Rényi prior.
 * [`poisson_data_SCM_prior.stan`](poisson_data_SCM_prior.stan): Same as Poisson data model above, but uses a soft configuration model as the network prior.
 * [`bernoulli_data_SCM_prior.stan`](bernoulli_data_SCM_prior.stan): Same as Bernoulli data model above, but uses a soft configuration model as the network prior.
-
+* [`multitype_poisson_data_ER_prior.stan`](multitype_poisson_data_ER_prior.stan): Takes a symmetric matrix of number of observations `X` as input. Models `X[i,j]` as drawn from a Poisson variable, with success rate determined by presence or absence of the edge `(i,j)`. **Uses multiple edge types**.  Uses a generalized Erdös-Rényi prior.
 
 
 ## Accelerated versions
