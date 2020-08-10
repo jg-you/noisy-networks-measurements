@@ -1,4 +1,4 @@
-Model templates, that can be used to implement custom models withouth writing boilerplate code.
+Model templates, that can be used to implement custom models without writing boilerplate code.
 Portions of the code that must be modified are marked with double square brackets, like so: `[[ ]]`.
 The available templates are:
 
