@@ -13,7 +13,7 @@ Here we provide several examples of models coded in `Stan`, as well as [a tutori
 The only necessary dependency is `stan`. 
 The framework will work with any [stan interface](https://mc-stan.org/users/interfaces/index.html).
 
-[Our tutorial](tutorial/tutorial.ipynb)uses the python interface.
+[Our tutorial](tutorial/tutorial.ipynb) uses the python interface.
 To install `pystan`, simply run:
 
     pip install pystan
@@ -21,10 +21,10 @@ To install `pystan`, simply run:
 
 ## List of models
 
-The method highlighted in the paper is flexible. We provide code for a few standard models, as well as extensible templates for models not covered by our library of models.
+We provide code for a several standard models, as well as extensible templates for models not covered by our library of models.
 
+* [Examples](examples/): Standard models.
 * [Templates](templates/): Model templates, that can be used to implement custom models without writing boilerplate code. 
-* [Examples](examples/): A few standard models.
 
 ## Paper
 
