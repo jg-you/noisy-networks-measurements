@@ -3,7 +3,7 @@ data {
   int X[n]; // number of pairs of nodes in each classes
   int Y[n]; // number of observations for each class
   int M;    // Total number of interactions
-  // Prios
+  // Priors
   real<lower=0> rates_prior[2];
   real<lower=0> rho_prior[2];
 }

@@ -2,7 +2,7 @@ data {
   int n;    // number of non-empty pairs class
   int X[n]; // number of pairs of nodes in each classes
   int Y[n]; // number of observations for each class
-  // Prios
+  // Priors
   real<lower=0> rates_std_prior[2];
   real<lower=0> rho_prior[2];
 }
