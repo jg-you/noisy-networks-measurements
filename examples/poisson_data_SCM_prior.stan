@@ -14,6 +14,7 @@ model {
   rates[1] ~ normal(1, rates_std_prior[1]);
   rates[2] ~ normal(1, rates_std_prior[2]);
   rho ~­ beta(rho_prior[1], rho_prior[2]);
+  scale ~ exponential(100);
 
   for (i in 1:n) {
     for (j in i + 1:n) {
