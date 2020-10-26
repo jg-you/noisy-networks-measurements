@@ -3,17 +3,15 @@ data {
   int<lower=0> X[n, n];
   int M;
   real<lower=0> rates_prior[2];
-  real<lower=0> rho_prior[2];
 }
 parameters {
   positive_ordered[2] rates;
-  real<lower=0, upper=1> rho;
   simplex[n] lambda;
   real<lower = 0> scale;
 }
 model {
   rates ~ beta(rates_prior[1], rates_prior[2]);
-  rho ~­ beta(rho_prior[1], rho_prior[2]);
+  scale ~ exponential(100);
 
   for (i in 1:n) {
     for (j in i + 1:n) {
