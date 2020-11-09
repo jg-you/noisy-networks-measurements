@@ -4,7 +4,7 @@
 Python functions to interact with the stan models.
 
 Author:
-Jean-Gabriel Young <jgyou@umich.edu>
+Jean-Gabriel Young <jean.gabriel.young@gmail.com>
 """
 import numpy as np
 import pickle
