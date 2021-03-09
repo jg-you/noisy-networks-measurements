@@ -1,7 +1,7 @@
 # noisy-networks-measurements
 
 Bayesian reconstruction of networks from noisy measurements, with examples.
-The theory explaining these models is presented in ["Robust Bayesian inference of network structure from unreliable data"](https://arxiv.org/abs/2008.03334), by [J.-G. Young](http://jgyoung.ca), [G. T. Cantwell](https://www.george-cantwell.com/) and [M.E.J. Newman](http://www-personal.umich.edu/~mejn/).
+The theory explaining these models is presented in ["Bayesian inference of network structure from unreliable data"](https://academic.oup.com/comnet/article/8/6/cnaa046/6161493), by [J.-G. Young](http://jgyoung.ca), [G. T. Cantwell](https://www.george-cantwell.com/) and [M.E.J. Newman](http://www-personal.umich.edu/~mejn/).
 Here we provide several examples of models coded in `Stan`, as well as [a tutorial](tutorial/tutorial.ipynb) reproducing one of the case study of the paper.
 
 
@@ -30,9 +30,9 @@ We provide code for a several standard models, as well as extensible templates f
 
 If you use this code, please consider citing:
 
-"[*Robust Bayesian inference of network structure from unreliable data*](https://arxiv.org/abs/2008.03334)"<br/>
+"[*Bayesian inference of network structure from unreliable data*](https://academic.oup.com/comnet/article/8/6/cnaa046/6161493)"<br/>
 [J.-G. Young](http://jgyoung.ca), [G. T. Cantwell](https://www.george-cantwell.com/) and [M.E.J. Newman](http://www-personal.umich.edu/~mejn/)<br/>
-arXiv:2008.03334 (2020) <br/>
+J. Complex Netw. **8**, cnaa046 (2021) <br/>
 
 ## Author information
 
