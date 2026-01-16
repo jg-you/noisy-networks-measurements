@@ -1,8 +1,8 @@
 data {
   int<lower=1> n;
-  int<lower=0> X[n, n];
+  array[n, n] int<lower=0> X;
   int T; // number of edge types
-  real<lower=0> rates_std_prior[T];
+  array[T] real<lower=0> rates_std_prior;
 }
 parameters {
   positive_ordered[T] rates;
@@ -22,7 +22,7 @@ model {
       for (k in 1:T) {
         real log_mu_ij_k = poisson_lpmf(X[i, j] | rates[k]);
         real log_nu_ij_k = log(rho[k]);
-  
+
         z_ij[k] = log_mu_ij_k + log_nu_ij_k;
       }
       z_max = max(z_ij);
@@ -32,7 +32,7 @@ model {
   }
 }
 generated quantities {
-  real Q[n ,n, T];
+  array[n, n, T] real Q;
   for (i in 1:n) {
     for (k in 1:T) {
       Q[i, i, k] = 0;
@@ -45,7 +45,7 @@ generated quantities {
         real log_mu_ij_k = poisson_lpmf(X[i, j] | rates[k]);
         real log_nu_ij_k = log(rho[k]);
 
-        z_ij[k] =  log_mu_ij_k + log_nu_ij_k;
+        z_ij[k] = log_mu_ij_k + log_nu_ij_k;
       }
       for (k in 1:T)
       {

@@ -1,20 +1,20 @@
 data {
   int<lower=1> n;
-  int<lower=0> X[n, n];
+  array[n, n] int<lower=0> X;
   int T; // number of edge types
   // [[Additional data go here]]
 }
 parameters {
   // [[Parameters go here]]
-  // 
+  //
   // For example:
   // real<lower=0,upper=1> theta;
 }
 model {
   // [[Priors go here]]
-  // 
+  //
   // For example:
-  // theta ~ beta(1, 1/2);
+  // theta ~ beta(1, 1/2);
 
   for (i in 1:n) {
     for (j in i + 1:n) {
@@ -26,7 +26,7 @@ model {
         real log_mu_ij_k = ;
         // [[Network model goes here]]
         real log_nu_ij_k = ;
-        
+
         // Boilerplate code below, do not modify
         z_ij[k] = log_mu_ij_k + log_nu_ij_k;
       }
@@ -37,8 +37,8 @@ model {
   }
 }
 generated quantities {
-  // Generate edge probability matrix 
-  real Q[n ,n, T];
+  // Generate edge probability matrix
+  array[n, n, T] real Q;
   for (i in 1:n) {
     for (k in 1:T) {
       Q[i, i, k] = 0;
@@ -54,7 +54,7 @@ generated quantities {
         real log_nu_ij_k = ;
 
         // Boilerplate code below, do not modify
-        z_ij[k] =  log_mu_ij_k + log_nu_ij_k;
+        z_ij[k] = log_mu_ij_k + log_nu_ij_k;
       }
       for (k in 1:T)
       {
@@ -64,6 +64,7 @@ generated quantities {
           accu += exp(z_ij[k_prime] - z_ij[k]);
         }
         Q[i, j, k] = 1 / accu;
+        Q[j, i, k] = Q[i, j, k];
       }
     }
   }
