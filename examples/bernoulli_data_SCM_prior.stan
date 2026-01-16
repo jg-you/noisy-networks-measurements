@@ -1,13 +1,13 @@
 data {
   int<lower=1> n;
-  int<lower=0> X[n, n];
+  array[n, n] int<lower=0> X;
   int M;
-  real<lower=0> rates_prior[2];
+  array[2] real<lower=0> rates_prior;
 }
 parameters {
   positive_ordered[2] rates;
   simplex[n] lambda;
-  real<lower = 0> scale;
+  real<lower=0> scale;
 }
 model {
   rates ~ beta(rates_prior[1], rates_prior[2]);
@@ -25,12 +25,12 @@ model {
       real z_ij_0 = log_mu_ij_0 + log_nu_ij_0;
       real z_ij_1 = log_mu_ij_1 + log_nu_ij_1;
       if (z_ij_0 > z_ij_1) {target += z_ij_0 + log1p_exp(z_ij_1 - z_ij_0);}
-      else {target += z_ij_1 + log1p_exp(z_ij_0 - z_ij_1);}
+      else {target += z_ij_1 + log1p_exp(z_ij_0 - z_ij_1);}
     }
   }
 }
 generated quantities {
-  real Q[n ,n];
+  array[n, n] real Q;
   for (i in 1:n) {
     Q[i, i] = 0;
     for (j in i+1:n) {
@@ -43,7 +43,7 @@ generated quantities {
 
       real z_ij_0 = log_mu_ij_0 + log_nu_ij_0;
       real z_ij_1 = log_mu_ij_1 + log_nu_ij_1;
-      Q[i, j] = 1 / (1  + exp(z_ij_0 - z_ij_1));
+      Q[i, j] = 1 / (1 + exp(z_ij_0 - z_ij_1));
       Q[j, i] = Q[i, j];
     }
   }

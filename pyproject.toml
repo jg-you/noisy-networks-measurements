@@ -1,0 +1,54 @@
+[project]
+name = "noisy-networks-measurements"
+version = "1.0.0"
+description = "Bayesian inference of network structure from unreliable data"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Jean-Gabriel Young", email = "jean.gabriel.young@gmail.com" }
+]
+requires-python = ">=3.10"
+keywords = ["bayesian", "networks", "stan", "inference", "measurement-error"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+
+dependencies = [
+    "cmdstanpy>=1.2.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+tutorial = [
+    "matplotlib>=3.7.0",
+    "networkx>=3.0",
+    "pandas>=2.0.0",
+    "seaborn>=0.12.0",
+    "jupyter>=1.0.0",
+]
+dev = [
+    "ruff>=0.1.0",
+]
+
+[project.urls]
+Repository = "https://github.com/jg-you/noisy-networks-measurements"
+Paper = "https://doi.org/10.1093/comnet/cnaa046"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["examples"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"

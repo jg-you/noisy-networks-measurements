@@ -1,48 +1,44 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Python functions to interact with the stan models.
+Python functions to interact with the Stan models.
 
 Author:
 Jean-Gabriel Young <jean.gabriel.young@gmail.com>
 """
-import numpy as np
-import pickle
-import pystan
-import os
+from pathlib import Path
 
-abs_path = os.path.dirname(os.path.abspath(__file__))
+from cmdstanpy import CmdStanModel
 
-
-def compile_stan_model(model_file, force=False):
-    """Autocompile Stan model."""
-    model_name = os.path.splitext(model_file)[0]
-    source_path = os.path.join(abs_path, model_name + '.stan')
-    target_path = os.path.join(abs_path, model_name + '.bin')
-
-    if os.path.exists(target_path):
-        # Test whether the model has changed and only compile if it did
-        with open(target_path, 'rb') as f:
-            current_model = pickle.load(f)
-        with open(source_path, 'r') as f:
-            file_content = "".join([line for line in f])
-        if file_content != current_model.model_code or force:
-            print(target_path, "[Compiling]", ["", "[Forced]"][force])
-            model = pystan.StanModel(source_path, model_name=model_name)
-            with open(target_path, 'wb') as f:
-                pickle.dump(model, f)
-        else:
-            print(target_path, "[Skipping --- already compiled]")
-    else:
-        # If model binary does not exist, compile it
-        print(target_path, "[Compiling]")
-        model = pystan.StanModel(source_path, model_name=model_name)
-        with open(target_path, 'wb') as f:
-            pickle.dump(model, f)
+abs_path = Path(__file__).parent.resolve()
 
 
-if __name__ == '__main__':
-    print("Compiling models with pystan version", pystan.__version__)
-    for m in os.listdir("examples"):
-        if os.path.splitext(m)[1] == ".stan":
-            compile_stan_model(m, force=False)
+def compile_stan_model(model_file: str | Path, force: bool = False) -> CmdStanModel:
+    """Compile a Stan model using CmdStanPy.
+
+    Args:
+        model_file: Name or path of the .stan file
+        force: If True, recompile even if binary exists
+
+    Returns:
+        Compiled CmdStanModel ready for sampling
+    """
+    model_path = Path(model_file)
+    if not model_path.is_absolute():
+        model_path = abs_path / model_path
+
+    # Ensure .stan extension
+    if model_path.suffix != ".stan":
+        model_path = model_path.with_suffix(".stan")
+
+    print(f"{model_path} [{'Forcing recompile' if force else 'Compiling'}]")
+    model = CmdStanModel(stan_file=model_path, force_compile=force)
+
+    return model
+
+
+if __name__ == "__main__":
+    import cmdstanpy
+
+    print(f"Compiling models with cmdstanpy version {cmdstanpy.__version__}")
+    for stan_file in abs_path.glob("*.stan"):
+        compile_stan_model(stan_file, force=False)
