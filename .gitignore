@@ -131,3 +131,11 @@ dmypy.json
 
 # readme
 readme.html
+README.html
+
+# Stan compiled models (cmdstanpy)
+*.hpp
+*.exe
+
+# Legacy pystan compiled models
+*.bin
