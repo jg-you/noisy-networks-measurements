@@ -21,7 +21,8 @@ Python is our preferred way to interact with `Stan`.
 To follow our exact approach, install dependencies as follows.
 ```bash
 uv sync                    # or: pip install cmdstanpy numpy
-uv sync --extra tutorial   # includes matplotlib, networkx, pandas, jupyter
+uv sync --extra tutorial   # includes matplotlib, networkx, pandas, seaborn, jupyter
+uv run python -m cmdstanpy.install_cmdstan  # install the Stan compiler (one-time setup, may take a few minutes)
 ```
 You're then ready to follow the [tutorial](tutorial/tutorial.ipynb).
 
